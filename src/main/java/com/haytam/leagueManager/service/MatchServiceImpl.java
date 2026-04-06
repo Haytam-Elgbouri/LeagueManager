@@ -6,10 +6,13 @@ import com.haytam.leagueManager.mapper.MatchMapper;
 import com.haytam.leagueManager.repository.MatchEventRepository;
 import com.haytam.leagueManager.repository.MatchRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+
+import java.time.LocalDate;
 
 import static com.haytam.leagueManager.enums.EventType.GOAL;
 import static com.haytam.leagueManager.enums.MatchStatus.*;
-
+@Service
 @RequiredArgsConstructor
 public class MatchServiceImpl {
 
@@ -21,10 +24,16 @@ public class MatchServiceImpl {
 
     public MatchDTO addMatch(MatchDTO dto){
         Match match = mapper.toEntity(dto);
+        match.setDate(LocalDate.now());
+        match.setStatus(COMING);
         repository.save(match);
         return mapper.toDto(match);
     }
 
+    public MatchDTO getMatch(Long id){
+        Match match = repository.findById(id).orElseThrow();
+        return mapper.toDto(match);
+    }
 
     public void startMatch(Long matchId){
 
@@ -50,10 +59,10 @@ public class MatchServiceImpl {
         }else{
             match.setStatus(FINISHED);
             Integer homeScore = eventRepository
-                    .countByEventTypeAndTeamIdAndMatchId(GOAL, match.getHomeTeam().getId(), matchId);
+                    .countByTypeAndTeamIdAndMatchId(GOAL, match.getHomeTeam().getId(), matchId);
 
             Integer awayScore = eventRepository
-                    .countByEventTypeAndTeamIdAndMatchId(GOAL, match.getAwayTeam().getId(), matchId);
+                    .countByTypeAndTeamIdAndMatchId(GOAL, match.getAwayTeam().getId(), matchId);
 
             match.setHomeScore(homeScore);
             match.setAwayScore(awayScore);

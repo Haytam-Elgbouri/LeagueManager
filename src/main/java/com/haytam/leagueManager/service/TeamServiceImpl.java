@@ -5,9 +5,10 @@ import com.haytam.leagueManager.entity.Team;
 import com.haytam.leagueManager.mapper.TeamMapper;
 import com.haytam.leagueManager.repository.TeamRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 @RequiredArgsConstructor
 public class TeamServiceImpl {
 
@@ -31,12 +32,13 @@ public class TeamServiceImpl {
                 .toList();
     }
 
+    public TeamDTO updateTeam(TeamDTO dto, Long id){
+        return null;
+    }
+
     public void deleteTeam(Long id){
         repository.deleteById(id);
     }
 
-    public TeamDTO updateTeam(TeamDTO dto){
-        return null;
-    }
 
 }

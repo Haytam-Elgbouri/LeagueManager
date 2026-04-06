@@ -13,8 +13,8 @@ import lombok.Getter;
 public class MatchEventDTO {
 
     private Long id;
-    private Match match;
-    private Player player;
+    private MatchDTO match;
+    private PlayerDTO player;
     private Team team;
     private EventType type;
     private Integer minute;

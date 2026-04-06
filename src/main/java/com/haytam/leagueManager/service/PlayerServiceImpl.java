@@ -3,12 +3,12 @@ package com.haytam.leagueManager.service;
 import com.haytam.leagueManager.dto.PlayerDTO;
 import com.haytam.leagueManager.entity.Player;
 import com.haytam.leagueManager.mapper.PlayerMapper;
-import com.haytam.leagueManager.mapper.TeamMapper;
 import com.haytam.leagueManager.repository.PlayerRepository;
-import com.haytam.leagueManager.repository.TeamRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
+@Service
 @RequiredArgsConstructor
 public class PlayerServiceImpl {
     private final PlayerMapper mapper;
@@ -31,11 +31,12 @@ public class PlayerServiceImpl {
                 .toList();
     }
 
+    public PlayerDTO updatePlayer(PlayerDTO dto, Long id){
+        return null;
+    }
+
     public void deletePlayer(Long id){
         repository.deleteById(id);
     }
 
-    public PlayerDTO updatePlayer(PlayerDTO dto){
-        return null;
-    }
 }

@@ -11,6 +11,6 @@ public class PlayerDTO {
     private String firstName;
     private String lastName;
     private String photoUrl;
-    private Long teamId;
+    private TeamDTO team;
 
 }

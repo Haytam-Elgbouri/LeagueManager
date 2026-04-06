@@ -5,12 +5,17 @@ import com.haytam.leagueManager.entity.MatchEvent;
 import com.haytam.leagueManager.enums.EventType;
 import com.haytam.leagueManager.mapper.MatchEventMapper;
 import com.haytam.leagueManager.repository.MatchEventRepository;
+import com.haytam.leagueManager.repository.MatchRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
+@Service
 @RequiredArgsConstructor
 public class MatchEventServiceImpl {
     private final MatchEventMapper mapper;
     private final MatchEventRepository repository;
+
+    private final MatchRepository matchRepository;
 
 //    public MatchEventDTO addMatchEvent(MatchEventDTO dto){
 //        MatchEvent matchEvent = mapper.toEntity(dto);
